@@ -20,7 +20,7 @@
      <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}"method="post">
 
-		<input type="text" name="query" placeholder="Enter your query here with ailement | and taste, aroma and effect needed." required="required" size=100/>
+		<input type="text" name="query" placeholder="Enter your query here with ailement and desired geographical origin of the strain | Specify taste, aroma and effect needed." required="required" size=120/>
 
 
         <button type="submit" class="btn btn-primary btn-block btn-large">Submit</button>
