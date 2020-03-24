@@ -10,7 +10,7 @@ import requests
 app = Flask(__name__)
 
 def create_app():
-    model = joblib.load(open('potguide_model.pkl', 'rb'))
+    model = joblib.load(open('potguide_march24.pkl', 'rb'))
 
 #################APP ROUTES####################
 
@@ -25,21 +25,21 @@ def create_app():
         features = [np.array(str_features)]
 
         data = [np.array(features)]
-        model = joblib.load(open('potguide_model.pkl', 'rb'))
+        model = joblib.load(open('potguide_march24.pkl', 'rb'))
         #prediction = np.array2string(model.predict(data))
         prediction = np.array(model.predict(data))
         #output = round(prediction[0], 2)
 
-        return render_template('index.html', prediction_text='The recommended cannabis strain is {}'.format(prediction))
+        return render_template('index.html', prediction_text='The recommended medical cannabis strain is {}'.format(prediction))
 
     @app.route('/predict', methods=['POST', 'GET'])
     def predict():
-        model = joblib.load('potguide_model.pkl')
+        model = joblib.load('potguide_march24.pkl')
         d = request.form.values()
         #data = d.json()
         prediction = np.array2string(model.predict(d))
         res = jsonify(prediction)
-        return render_template('index.html', prediction_text='The recommended cannabis strain is {}'.format(prediction))
+        return render_template('index.html', prediction_text='The recommended medical cannabis strain is {}'.format(prediction))
 
 
 
@@ -47,7 +47,7 @@ def create_app():
     def results():
 
         data = request.get_json(force=True)
-        model = joblib.load(open('potguide_model.pkl', 'rb'))
+        model = joblib.load(open('potguide_march24.pkl', 'rb'))
         prediction = np.array2string(model.predict(data))
         return jsonify(prediction)
         
